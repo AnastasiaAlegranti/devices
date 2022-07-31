@@ -1,0 +1,19 @@
+<div class="spinnerDialog" *ngIf="isSpinner">
+  <div class="spinnerDialog2">
+    <ion-spinner name="lines"></ion-spinner>
+  </div>
+</div>
+<ion-header >
+  <ion-toolbar>
+    <ion-title >Devices</ion-title>
+  </ion-toolbar>
+  <ion-searchbar [(ngModel)]="searchTerm" placeholder="Enter device name" (ionChange)="filterDevices()" ></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <div class="devices"  *ngFor="let device of filteredDevices" (click)="markDevice(device)" [ngStyle]="{'border-color':device.isMarked?'yellow':'grey'}">
+    <h5 [ngStyle]="{'background':device.status===0?'grey':'pink'}">{{device.Name}}</h5>
+    <p>{{device.NativeResolution}}</p>
+    <p class="status">{{device.status}}</p>
+  </div>
+</ion-content>
